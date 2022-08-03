@@ -2,7 +2,7 @@
 
 namespace Test;
 
-public class HelpersTest
+public class HashHelperTest
 {
     [Theory]
     [InlineData("250~25~10~100~100~7~8", "2f941516446dce09bc2841da60bf811f")]

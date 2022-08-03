@@ -1,7 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f26e82d6_002D13be_002D475e_002Daa33_002Dd5339a1be7d6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.ChatRepositoryTest.GenerateMD5Hash&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.HelpersTest.MD5Hash&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.UriHelperTest.IsValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.UriHelperTest.GetBucket&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.UriHelperTest.GetKey&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.S3HelperTest.GetFileFromUri&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::B45C49EC-1E94-4621-BF0D-5A8407AB2C93::net6.0::Test.S3HelperTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
