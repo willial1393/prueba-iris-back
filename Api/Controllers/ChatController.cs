@@ -8,17 +8,33 @@ namespace Api.Controllers
     public class ChatController : ControllerBase
     {
         private readonly IChatRepository _chatRepository;
+        private readonly IS3Repository _s3Repository;
 
-        public ChatController(IChatRepository chatRepository)
+        public ChatController(IChatRepository chatRepository, IS3Repository s3Repository)
         {
             _chatRepository = chatRepository;
+            _s3Repository = s3Repository;
         }
 
-        [HttpGet("{uri}")]
-        public async Task<IActionResult> ProcessFile(string uri)
+        [HttpPost]
+        public async Task<IActionResult> ProcessFile(string uriFile)
         {
-            var chat = await _chatRepository.ProcessFile(uri);
-            return Ok(chat);
+            if (string.IsNullOrEmpty(uriFile))
+            {
+                return BadRequest("La uri debe ser valida, ej: s3://fdr-developer-test-22122020/data.txt");
+            }
+
+            try
+            {
+                var file = await _s3Repository.GetFileFromUri(uriFile);
+                var chat = await _chatRepository.ProcessFile(file);
+                await _s3Repository.DeleteFileFromUri(uriFile);
+                return Ok(chat);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
