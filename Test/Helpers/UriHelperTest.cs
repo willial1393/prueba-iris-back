@@ -1,6 +1,6 @@
 ﻿using Infrastructure.Helpers;
 
-namespace Test;
+namespace Test.Helpers;
 
 public class UriHelperTest
 {

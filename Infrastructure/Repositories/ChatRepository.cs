@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Amazon.DynamoDBv2.DataModel;
+﻿using Amazon.DynamoDBv2.DataModel;
 using Core.Entities;
 using Core.Repositories;
 using Infrastructure.Data.DynamoDb;
@@ -16,28 +15,17 @@ public class ChatRepository : IChatRepository
         _dbContext = dbContext;
     }
 
-    public async Task<IChat> ProcessFile(string uri)
+    public async Task<IChat> ProcessFile(string file)
     {
-        var chat = new ChatDynamoDb
-        {
-            Timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture),
-            ReasonChange = 1,
-            ReasonClaim = 234,
-            ReasonCongratulations = 32,
-            ReasonDoubt = 35,
-            ReasonPurchase = 5467,
-            WarrantyReason = 4345,
-            TotalContactClients = 32
-        };
-        chat.Hash = HashHelper.MD5Hash(chat.ToString());
+        var chat = ChatHelper.FromText(file);
+        if (!ChatHelper.IsValidData(chat))
+            throw new Exception($"Invalid file data:\n{file}");
 
-        var res = await _dbContext.LoadAsync<ChatDynamoDb>(DateTime.Now.Millisecond.ToString());
+        var res = await _dbContext.LoadAsync<ChatDynamoDb>(chat.Timestamp);
         if (res != null)
-        {
-            throw new InvalidOperationException($"Student with Id {res.Timestamp} Already Exists");
-        }
+            throw new Exception($"Chat with timestamp {res.Timestamp} already exists");
 
-        await _dbContext.SaveAsync(chat);
+        await _dbContext.SaveAsync(chat as ChatDynamoDb);
         return chat;
     }
 }

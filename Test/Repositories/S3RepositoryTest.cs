@@ -1,7 +1,7 @@
 ﻿using Amazon.S3;
 using Infrastructure.Repositories;
 
-namespace Test;
+namespace Test.Repositories;
 
 public class S3HelperTest
 {
@@ -16,5 +16,16 @@ public class S3HelperTest
         var actual = await s3.GetFileFromUri(uri);
         // Assert
         Assert.Equal(expected, actual.Trim().Replace("\r", "").Replace("\n", ""));
+    }
+
+    [Fact]
+    public async Task DeleteFileFromUri()
+    {
+        // Arrange
+        var s3 = new S3Repository(new AmazonS3Client());
+        const string uri = "s3://prueba-iris/data2.txt";
+        // Act
+        await s3.DeleteFileFromUri(uri);
+        // Assert
     }
 }
